@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravity Dam for Flood Control</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles - Copied from index.html for consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #06b6d4;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --dark: #1e293b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--secondary);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Project Specific Styles */
+        .project-detail-section {
+            padding-top: 100px; /* Adjust for fixed header */
+            text-align: left;
+        }
+
+        .project-detail-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            text-align: center;
+        }
+
+        .project-detail-section h2 {
+            text-align: left;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .project-detail-section h2:after {
+            left: 0;
+            transform: none;
+        }
+
+        .project-detail-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-detail-section ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .project-detail-section ol {
+            list-style: decimal;
+            margin-left: 20px;
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .project-detail-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Image Gallery Styles */
+        .gallery-section {
+            padding: 60px 0;
+            background-color: #f0f4f8;
+        }
+
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 250px; /* Fixed height for consistency */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item .media-container {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .caption {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img, .lightbox-content video {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .lightbox-nav button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Document Viewer Styles */
+        .document-viewer-section {
+            padding: 60px 0;
+        }
+
+        .viewer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .viewer-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .viewer-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .viewer-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .viewer-title i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .viewer-content {
+            height: 600px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .viewer-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-left.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .animate-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-right.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Footer - Copied from index.html for consistency */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-col p {
+            color: #cbd5e1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 200px;
+            }
+            
+            .viewer-content {
+                height: 400px;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--secondary);
+                padding: 20px;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">4PRO<span>Portfolio</span></a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="project-detail-section">
+        <div class="container">
+            <h1 class="animate-on-scroll">Gravity Dam for Flood Control in El-Hamamat Valley</h1>
+            <img src="projects/G10-S1/IMAGES/project1pannar.jpg" alt="Project Banner" class="animate-on-scroll">
+
+            <h2 class="animate-left">Abstract</h2>
+            <p class="animate-right">In Egypt, there are a lot of problems that we have to fix, one of them is climate change as it can cause destructive phenomena like tornadoes, floods, etc. Another problem is urban congestion which happens due to the unfair disruptive of materials in the country like scarcity of water in some areas in the country. With the continuous rise in the population, we found a parallel increase in the production of factories, and the process of production can cause pollution if the wastage isn't recycled in the right way. Floods are dangerous in Egypt and there are a lot of factors that affect on ratio of floods in Egypt like heavy rains or elevating of the Nile level and it has advantages and disadvantages. The disadvantage is that they can destroy a lot of things such as buildings, crops, and the lives of humans also, they can spread diseases. Through our research, we found that building a dam is the most effective solution as it doesn't just hold floods but also stores water To face those problems we decided to construct a gravity dam as the purpose of the dam is to store water and deal with flash floods and we had chosen some rules as criteria for test the dam and our dam exceed it as it contains only one manufactured material, the storage water of is 54 liter, hold the water for 2 hours without bending, the crest holds 15 kilograms without breaking down. We designed the final shape of the dam before making it as we put two gates in the dam one to discharge about 25% of the water of the reservoir and the second to discharge about 50% of the water and two spillway gates at the side of the reservoir to discharge the water of floods at height 37 cm. The test plan of the solution showed positive results and the solution achieved the specified design requirement.</p>
+
+            <h2 class="animate-left">Introduction</h2>
+            <p class="animate-right">Egypt faces a lot of problem on the way to rise with its fields.</p>
+            <p class="animate-right">From those problems we had the shortage of water as there are a lot of fields that need water like agriculture field or the needs of people of water in per day and the total ratio of the water that Egypt had less than its needs.</p>
+            <p class="animate-right">Another problem that faces Egypt is the urban congestion, due to the continuous increase of the number of populations in Egypt and the unfair distribution of resources like water supplies in the various areas in Egypt, we also found that people concentrate in some area and some areas are completely deserted.</p>
+            <p class="animate-right">At any place in the world, we find there is a direct relation between the ratio of production of factories and the population and through the process of production we produce a lot of wastage and that wastage can increase the pollution and that pollution can affect on various living organism like throwing plastic in the ocean.</p>
+            <p class="animate-right">From the factors that have high effect on Egypt economic and people lifestyle is the climate change, if we compared between the weather in the near past and the present, we would find that there is a huge difference and that could be due to decrease in the water lands in Egypt.</p>
+            <p class="animate-right">The problem of flash floods that destroy anything in its way make the humans to find a solution to stop these destructive phenomena, If we searched we would find that there are a lot of attempts to found a solution, one of those prior solutions is the three Georges dam, these dam is a gravity dam that stores about constructed to storage water and face the floods at the area of the Yangtze River in China, these project had a lot of advantage like Hydropower Generation, Flood Control, Navigation Improvement, Tourism and Economic Development and at the other hand there are some disadvantage such as significant Displacement of people, Polluting water, Greenhouse effect.</p>
+            <p class="animate-right">We had chosen to build a gravity dam in Wadi EL-Hamamat for two reasons the first is because the type of soil such as sandy soil that had high bearing capacity and other types, second reason that it would reflect a lot of benefits like control the floods as the Wadi located at the zone of the floods (as shown in fig.1) and building a dam would decrease the economic and human life losses.</p>
+
+            <h2 class="animate-left">Materials and Methods</h2>
+            <p class="animate-right">First, we started by determining the way that will be used to build the prototype. and We chose to:</p>
+            <ol class="animate-right">
+                <li>build a Mold by wooden sheets with the dimensions of the prototype, to put the building materials in it. And give them the shape of the dam.</li>
+                <li>we put the metal reinforced bars in the mold vertically and horizontally to give it hardness and make it more flexible.</li>
+                <li>We mixed the cetorex grout with water and gravel with the with ratio 1 milliliter of water for each 10 grams in the plastic bucket, and made sure that the ingredients are mixed well,</li>
+                <li>We put the mixture of the cetorex in the mold carefully, and waited until it gets dry.</li>
+                <li>After the mixture got dried, we unscrew the mold, then we put the dam in the reservoir the we have prepared to store the water in.</li>
+            </ol>
+            <h3 class="animate-left">Test plan:</h3>
+            <p class="animate-right">Every project should be put to the test to determine its effectiveness, efficiency, and whether it meets the requirements for which it was created.</p>
+            <p class="animate-right">So, we tested the dimensions and took into consideration that the concrete expands after it dries so we tested our dimensions a day after letting the dam to ensure that it had dried. Using a measuring tape and determined the error.</p>
+            <p class="animate-right">Second, the ability of the crossroad to resist a load of 10 kg or more, by putting different masses on its center and observing any change in it.</p>
+            <p class="animate-right">Third, the flow rate: for testing the flow rate of water in the dam gates we used a bucket to collect water getting out of the gate and we took a graduated cylinder from the chemistry lab to measure the volume of the quantity of water we collected, and a stopwatch to calculate the time by which water got out of the gates.</p>
+            <p class="animate-right">forth, we tested the ability of the dam to store the maximum amount of water without any leakage in water or effect in the dam structure, so we put 54 liters of water in the dam for 2 hour and observed the change in the quantity of water in the 2 hour and found that there was no change or leakage in the amount of water.</p>
+
+            <h2 class="animate-left">Results</h2>
+            <p class="animate-right">In testing our prototype, we had to examine the efficacy and the dimensions of our prototype, and we found.</p>
+            <p class="animate-right">First, in testing the dimensions : after measuring the dimensions we found that there were an error in the dimensions of the dam as shown in table 2. the error in the width of the dam is -1.2 cm so we filled the space between the dam and the container by sika silicon to prevent any leak in water.</p>
+            <p class="animate-right">Second, the ability of the crossroad to resist a load of 10 kg or more: we found that the dam's crest resisted the 10 kg so we put more weight on it and it resisted up to 85 without breaking up and can be more.</p>
+            <p class="animate-right">Third, the ability of the dam to store the maximum amount of water without any leakage in water for 2 hours: in the first trial we found a leak from under the dam, so we filled the space under the dam with sika silicon and retested the dam and found no leak after that.</p>
+            <p class="animate-right">Fourth, the dam discharged the whole amount of water from the side spillway automatically and we could discharge the 25% and 75% of water from the dam without any malfunction in the mechanism of opening or closing of gates.</p>
+            <p class="animate-right">Fifth, the flow rate : we found that the speed of discharging of water from the lower gate is 0.2368421053 liters/sec and the upper one is 0.16875 liters/sec due to change in pressure and we calculated the flow rate of water during the discharging of the amount of water from the dam as shown in graph 1</p>
+
+            <h2 class="animate-left">Conclusion</h2>
+            <p class="animate-right">The challenge which is protecting our homeland from floods was handled by constructing the prototype of our solution, which is a dam.</p>
+            <p class="animate-right">The test was done, and the data of the results were collected as the dam and the used materials have been tested and they achieved the design requirements, which are that the crest of the dam should resist a mass of not less than 10 kg, a stored capacity with a minimum of 50 kg and a maximum of 60 kg, and the thickness of the dam in the bottom should not be less than 10 cm while in the top it should be not less than 3 cm.</p>
+            <p class="animate-right">It's been concluded that the used materials succeeded to give the results that achieved the design requirements, and the prototype will be way better if it was built in real life, as it will generate hydroelectric power.</p>
+            <p class="animate-right">Also, the prototype can be considered to have the proper dimensions as they did not exceed the maximum determined dimension limit.</p>
+            <p class="animate-right">The prior solution that we got our idea from and allowed to construct in building was chosen for many reasons and it is the Three Gorges Dam.</p>
+            <p class="animate-right">The Three Gorges Dam is one of the best gravity dams that stores water and protects the homeland from floods in the world, as the country it was built (China) is known for water conservation and pollution control, and we also chose wadi El-Hammamat in Egypt to build the dam in it as an alternative place to build it.</p>
+            <p class="animate-right">It was concluded that applying such project in Egypt would be great for a safer future and a better life.</p>
+        </div>
+    </section>
+
+    <!-- Document Viewer Section -->
+    <section class="document-viewer-section">
+        <div class="container">
+            <h2 class="animate-on-scroll">Project Documents</h2>
+            <div class="viewer-container">
+                <div class="viewer-item animate-left">
+                    <div class="viewer-title">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Project Portfolio</h3>
+                    </div>
+                    <div class="viewer-content">
+                        <!-- Portfolio PDF Viewer -->
+<iframe id="portfolio-pdf-viewer" src="projects/G10-S1/Portfolio17103.pdf"></iframe>                    </div>
+                </div>
+                
+                <div class="viewer-item animate-right">
+                    <div class="viewer-title">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Project Poster</h3>
+                    </div>
+                    <div class="viewer-content">
+                        <!-- Poster Viewer -->
+                        <iframe id="poster-pdf-viewer" src="projects\G10-S1\17103.pdf"></iframe>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="gallery-title animate-on-scroll">Project Gallery</h2>
+            <div class="gallery-grid">
+                <!-- Gallery items will be added here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-nav">
+                <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer - Copied from index.html for consistency -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>AI Portfolio</h3>
+                    <p>A showcase of technical projects in artificial intelligence and machine learning for university applications.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.kaggle.com/" class="social-link"><i class="fab fa-kaggle"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px;"><a href="index.html#home" style="color: #cbd5e1; text-decoration: none;">Home</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html#about" style="color: #cbd5e1; text-decoration: none;">About</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html#projects" style="color: #cbd5e1; text-decoration: none;">Projects</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html#contact" style="color: #cbd5e1; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Technical Skills</h3>
+                    <p>C++, Python, My-SQL, Flutter, Git/GitHub, HTML, CSS, JavaScript, Node.js, IoT & Embedded Systems, Electronics & circuits, Machine Learning & Computer Vision, Networking, Mobile & Backend Development</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI Portfolio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery data
+        const galleryImages = [
+            { src: 'projects/G10-S1/IMAGES/gallery1.jpg', caption: 'Dam Construction Process' },
+            { src: 'projects/G10-S1/IMAGES/gallery2.jpg', caption: 'Dam Structure Details' },
+            { src: 'projects/G10-S1/IMAGES/gallery3.jpg', caption: 'Testing Phase' },
+            { src: 'projects/G10-S1/IMAGES/gallery4.jpg', caption: 'Water Flow Simulation' },
+            { src: 'projects/G10-S1/IMAGES/gallery5.jpg', caption: 'Final Dam Prototype' },
+            { src: 'projects/G10-S1/IMAGES/gallery6.jpg', caption: 'Team Working on Project' },
+            { src: 'projects/G10-S1/IMAGES/gallery7.mp4', caption: 'Dam Functionality Demo', type: 'video' },
+            { src: 'projects/G10-S1/IMAGES/gallery8.jpg', caption: 'Project Presentation' }
+        ];
+
+        // Initialize gallery
+        function initGallery() {
+            const galleryGrid = document.querySelector('.gallery-grid');
+            
+            galleryImages.forEach((image, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item animate-on-scroll';
+                galleryItem.setAttribute('data-index', index);
+                
+                if (image.type === 'video') {
+                    galleryItem.innerHTML = `
+                        <div class="media-container">
+                            <video muted>
+                                <source src="${image.src}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="caption">${image.caption}</div>
+                    `;
+                } else {
+                    galleryItem.innerHTML = `
+                        <div class="media-container">
+                            <img src="${image.src}" alt="${image.caption}">
+                        </div>
+                        <div class="caption">${image.caption}</div>
+                    `;
+                }
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+            
+            // Add click event to gallery items
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    openLightbox(parseInt(this.getAttribute('data-index')));
+                });
+            });
+        }
+
+        // Lightbox functionality
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxContent = document.querySelector('.lightbox-content');
+            const media = galleryImages[currentIndex];
+            
+            if (media.type === 'video') {
+                lightboxContent.innerHTML = `
+                    <span class="lightbox-close">&times;</span>
+                    <video controls autoplay>
+                        <source src="${media.src}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="lightbox-nav">
+                        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                `;
+            } else {
+                lightboxContent.innerHTML = `
+                    <span class="lightbox-close">&times;</span>
+                    <img src="${media.src}" alt="${media.caption}">
+                    <div class="lightbox-nav">
+                        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                `;
+            }
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Add event listeners for lightbox controls
+            document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            document.querySelector('.lightbox-prev').addEventListener('click', showPrev);
+            document.querySelector('.lightbox-next').addEventListener('click', showNext);
+        }
+
+        function closeLightbox() {
+            document.querySelector('.lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            openLightbox(currentIndex);
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            openLightbox(currentIndex);
+        }
+
+        // Close lightbox when clicking outside the content
+        document.querySelector('.lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.querySelector('.lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    showPrev();
+                } else if (e.key === 'ArrowRight') {
+                    showNext();
+                }
+            }
+        });
+
+        // Scroll animations
+        function checkScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        function initMobileMenu() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav ul');
+            
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initGallery();
+            initMobileMenu();
+            checkScroll(); // Check on load
+            
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
+</body>
+</html>
