@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 2: Stock Price Prediction</title>
+    <title>Converting Thermal and Mechanical Energy into Electricity Using Stirling Engine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Base Styles - Copied from index.html for consistency */
         * {
             margin: 0;
             padding: 0;
@@ -40,6 +41,74 @@
             padding: 0 20px;
         }
 
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Header Styles */
         header {
             background: var(--secondary);
             color: white;
@@ -88,101 +157,416 @@
             color: var(--accent);
         }
 
-        .project-hero {
-            background: linear-gradient(135deg, var(--secondary) 0%, #334155 100%);
-            color: white;
-            padding: 160px 0 80px;
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Project Specific Styles */
+        .project-detail-section {
+            padding-top: 100px; /* Adjust for fixed header */
+            text-align: left;
+        }
+
+        .project-detail-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
             text-align: center;
         }
 
-        .project-hero h1 {
-            color: white;
+        .project-detail-section h2 {
+            text-align: left;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .project-detail-section h2:after {
+            left: 0;
+            transform: none;
+        }
+
+        .project-detail-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-detail-section ul {
+            list-style: disc;
+            margin-left: 20px;
             margin-bottom: 1.5rem;
+            color: var(--gray);
         }
 
-        .project-hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            color: #cbd5e1;
+        .project-detail-section ol {
+            list-style: decimal;
+            margin-left: 20px;
+            margin-bottom: 1.5rem;
+            color: var(--gray);
         }
 
-        .project-content {
-            padding: 80px 0;
+        .project-detail-section li {
+            margin-bottom: 0.5rem;
         }
 
-        .project-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 50px;
-        }
-
-        .project-info h2 {
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+        .project-detail-section table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 20px 0;
         }
 
-        .project-tag {
-            background: #dbeafe;
-            color: var(--primary);
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
+        .project-detail-section th, .project-detail-section td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
         }
 
-        .project-image {
+        .project-detail-section th {
+            background-color: #f2f2f2;
+        }
+
+        /* Image Gallery Styles */
+        .gallery-section {
+            padding: 60px 0;
+            background-color: #f0f4f8;
+        }
+
+        .gallery-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
-        .project-image div {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(45deg, #10b981, #3b82f6);
-            border-radius: 10px;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 250px; /* Fixed height for consistency */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item .media-container {
+            flex: 1;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .caption {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img, .lightbox-content video {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .lightbox-nav button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Document Viewer Styles */
+        .document-viewer-section {
+            padding: 60px 0;
+        }
+
+        .viewer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .viewer-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .viewer-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .viewer-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .viewer-title i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .viewer-content {
+            height: 600px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .viewer-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-left.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .animate-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-right.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Footer - Copied from index.html for consistency */
         footer {
             background: var(--secondary);
             color: white;
-            padding: 20px 0;
-            text-align: center;
+            padding: 50px 0 20px;
         }
 
-        .back-btn {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 12px 30px;
-            background: var(--primary);
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-col p {
+            color: #cbd5e1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .back-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
         }
 
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
         @media (max-width: 768px) {
-            .project-details {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 200px;
+            }
+            
+            .viewer-content {
+                height: 400px;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--secondary);
+                padding: 20px;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
             }
         }
     </style>
@@ -191,10 +575,13 @@
     <!-- Header -->
     <header>
         <div class="container header-content">
-            <a href="index.html" class="logo">AI<span>Portfolio</span></a>
+            <a href="index.html" class="logo">4PRO<span>Portfolio</span></a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#home">Home</a></li>
                     <li><a href="index.html#about">About</a></li>
                     <li><a href="index.html#projects">Projects</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
@@ -203,53 +590,495 @@
         </div>
     </header>
 
-    <!-- Project Hero -->
-    <section class="project-hero">
+    <section class="project-detail-section">
         <div class="container">
-            <h1>Stock Price Prediction</h1>
-            <p>LSTM-based model for predicting stock prices using historical data and advanced machine learning techniques.</p>
+            <h1 class="animate-on-scroll">Converting Thermal and Mechanical Energy into Electricity Using Stirling Engine</h1>
+            <img src="projects/G10-S2/images/panner.jpg" alt="Stirling Engine Project Banner" class="animate-on-scroll">
+
+            <h2 class="animate-left">Abstract</h2>
+            <p class="animate-right">As we live we face problems. During our semester we found several problems that we need to make a stand to fix. One of them is the decrease in the usage of renewable energy in Egypt as we only use a small percentage of renewable resources in generating electricity compared to fossil fuel usage. That problem leads to increased pollution as fossil fuel, is not a friendly environmental resource for energy. Even though we know that un-renewable energy is harmful to the environment we are still forced to use it due to some problems that restrict the usage of renewable energy. One of them is the need for enchanted technology for renewable energy such as solar panels and that reason also makes using it expensive.</p>
+            <p class="animate-right">We used a solution called the Stirling engine, it used in making the principle of expansion and compression of fluid by heat to transform thermal energy into mechanical energy then we used an external dynamo which is responsible for transforming the mechanical energy into electric energy. We inspired the idea of our project from a prior solution called a steam engine as both engines depend on the same principle of compressing and expansion of fluid.</p>
+            <p class="animate-right">To know if the project deserved to be used or not we had some design requirements that tell us about how the project is useful. First, the project had to generate at least 150 joules which equals 0.5 watts, second, it had to be able to store the electricity, third it had to be built up with recycled materials. The test plan of the solution showed positive results and the solution achieved the specified design requirement.</p>
+
+            <h2 class="animate-left">Introduction</h2>
+            <p class="animate-right">From the grand challenges faced by Egypt: Improve the usage of alternative energies, reduce pollution, reduce urban congestion, Reduce and adapt to the effect of climate change, and improve the scientific and technological environment. These challenges are related to many fields in Egypt having a great impact on them if solved, and many problems that have negative impacts in these fields.</p>
+            <p class="animate-right">Alternative energies are now the world's trend for generating energy, as the world is trying to stop depending on the oil that could run out at any time, and like that for Egypt, Egypt is having about 6% of its produced energy comes from renewable sources, which is a small percentage that needs to increase with high rate in the future.</p>
+            <p class="animate-right">Pollution and climate change also are the main challenges, they are related to each other as climate change is a result of air pollution, the main two types of pollution in Egypt are water pollution and air pollution, but Egypt suffers the most from air pollution which risks many lives and causes diseases, and the main cause for this is burning fossil fuels and carbon dioxide emissions in the atmosphere.</p>
+            <p class="animate-right">The main problem to be solved for this project is the huge usage of non-renewable sources of energy, Egypt mainly depends on fossil fuels for producing energy, Oil and natural gas are the most used sources in Egypt for producing energy, they generate about 90% of the total used energy. Oil and natural gas usage has been increasing at high rates since 1980 as shown in graph (1). This can cause disasters in the future as they are considered non-renewable sources that can run out at any time causing industrial and economic disasters, also burning fossil fuels creates greenhouse gas emissions causing air pollution and environmental disasters.</p>
+            <p class="animate-right">Before choosing the solution, it must see different solutions and try to inspire the final solution. The steam engine was one of the prior solutions and it had some useful concepts such as the concept of the expansion and compression of fluids by changing the heat energy of the fluid that event led to transform the thermal energy into mechanical energy which can be used in various fields as it had a significant role in the late 18th century as it used in the industrial revolution and transportation but one of the disadvantages of the steam engine is the needing of the high temperature.</p>
+            <p class="animate-right">As mentioned, the Steam engine was the first step in the final project as the Stirling engine" the solution" used the concept of the fluid changing volume by temperature. Still, it needed less than heat to make that phenomenon and that advantage was the point that made it the solution of the problem. The solution transferred the thermal energy to mechanical then to electrical by dynamo and after the solution was tested it came up with 786.75 RPM "Mechanical energy" which converted to 0.5875 watts "Electric energy" and by calculation it exceeds the 150 joules which had to be received to address the design requirement.</p>
+
+            <h2 class="animate-left">Materials and Methods</h2>
+            <table class="animate-right">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Usage</th>
+                        <th>Cost</th>
+                        <th>Source of Purchase</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Spray head with 63mm diameter</td>
+                        <td>Used in the structure of the external piston</td>
+                        <td>---</td>
+                        <td>Recycle</td>
+                        <td>1 spray with 63mm diameter</td>
+                    </tr>
+                    <tr>
+                        <td>Drink can</td>
+                        <td>Used in building structure of engine</td>
+                        <td>---</td>
+                        <td>Recycle</td>
+                        <td>1 can</td>
+                    </tr>
+                    <tr>
+                        <td>Aluminum skewer</td>
+                        <td>Support the structure of the prototype</td>
+                        <td>---</td>
+                        <td>Recycle</td>
+                        <td>4 skewers</td>
+                    </tr>
+                    <tr>
+                        <td>Bottle cap</td>
+                        <td>Used in making the external piston</td>
+                        <td>---</td>
+                        <td>Recycle</td>
+                        <td>1 bottle cap with 40mm diameter</td>
+                    </tr>
+                    <tr>
+                        <td>Dynamo DC</td>
+                        <td>Transforming the mechanical energy to electric energy</td>
+                        <td>---</td>
+                        <td>Recycle</td>
+                        <td>1 dynamo</td>
+                    </tr>
+                    <tr>
+                        <td>DVD</td>
+                        <td>Making the flywheel structure</td>
+                        <td>---</td>
+                        <td>Recycle</td>
+                        <td>4 DVD</td>
+                    </tr>
+                    <tr>
+                        <td>Wheel string</td>
+                        <td>Used in making the arms of pistons, flywheels, and crank craft</td>
+                        <td>---</td>
+                        <td>Recycle</td>
+                        <td>3 strings</td>
+                    </tr>
+                    <tr>
+                        <td>Battery</td>
+                        <td>Save energy that is produced</td>
+                        <td>50 L.E</td>
+                        <td>Electric shop</td>
+                        <td>1 battery</td>
+                    </tr>
+                    <tr>
+                        <td>Lamp application</td>
+                        <td>Use electric power in useful</td>
+                        <td>5 L.E</td>
+                        <td>Electric shop</td>
+                        <td>1 lamp</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="animate-left">Methods</h3>
+            <p class="animate-right">After searching about the materials that will be used in the prototype and preparing the materials to get ready to construct our prototype, there are some methods that will be followed. But before we start in the prototype, we must save ourselves from any, so we wear coats, gloves, and Google Glasses.</p>
+            <ol class="animate-right">
+                <li>Cans will be used to do the structure of the device</li>
+                <li>Food cans will be used to do a tank of flowed</li>
+                <li>Food cans will be used to cool the tank</li>
+                <li>A metal wool wire wheels will be used on top of the can and 2 light connectors to do the first piston</li>
+            </ol>
+
+            <h3 class="animate-left">Test Plan</h3>
+            <p class="animate-right">To make sure that the prototype follows the design requirements, we made steps to test it.</p>
+            <ol class="animate-right">
+                <li>Make sure that the solution is based on student activity.</li>
+                <li>Make sure that the dimensions of the materials used are accurate to the design, this can be done by calculating the error percentages in cutting the materials.</li>
+                <li>A multimeter will be used to collect the produced voltages and amperes from the prototype, these are the most necessary data to be collected.</li>
+                <li>Using these data to calculate the power of the electricity produced in watts.</li>
+            </ol>
+
+            <h2 class="animate-left">Results</h2>
+            <p class="animate-right">After testing the device here is the result, which should Produce at least 150 joules (equal to 0.5 watts) in at most 5 minutes. The test is repeated four times for more accuracy.</p>
+            
+            <h3 class="animate-left">Power Output Measurements</h3>
+            <table class="animate-right">
+                <thead>
+                    <tr>
+                        <th>Trials</th>
+                        <th>Time (seconds)</th>
+                        <th>Potential difference (volt)</th>
+                        <th>Electric current (ampere)</th>
+                        <th>Power (watt)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>First</td>
+                        <td>300 sec</td>
+                        <td>3.13 volt</td>
+                        <td>0.172 amps</td>
+                        <td>0.54 watt</td>
+                    </tr>
+                    <tr>
+                        <td>Second</td>
+                        <td>300 sec</td>
+                        <td>3.30 volt</td>
+                        <td>0.181 amps</td>
+                        <td>0.60 watt</td>
+                    </tr>
+                    <tr>
+                        <td>Third</td>
+                        <td>300 sec</td>
+                        <td>3.07 volt</td>
+                        <td>0.210 amps</td>
+                        <td>0.64 watt</td>
+                    </tr>
+                    <tr>
+                        <td>Fourth</td>
+                        <td>300 sec</td>
+                        <td>2.94 volt</td>
+                        <td>0.195 amps</td>
+                        <td>0.57 watt</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Average</strong></td>
+                        <td><strong>300 sec</strong></td>
+                        <td><strong>3.11 volt</strong></td>
+                        <td><strong>0.189 amps</strong></td>
+                        <td><strong>0.5875 watt</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="animate-left">Energy Output Calculations</h3>
+            <table class="animate-right">
+                <thead>
+                    <tr>
+                        <th>Trials</th>
+                        <th>Time (seconds)</th>
+                        <th>Energy (Joules)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>First</td>
+                        <td>300 seconds</td>
+                        <td>162 Joules</td>
+                    </tr>
+                    <tr>
+                        <td>Second</td>
+                        <td>300 seconds</td>
+                        <td>180 Joules</td>
+                    </tr>
+                    <tr>
+                        <td>Third</td>
+                        <td>300 seconds</td>
+                        <td>192 Joules</td>
+                    </tr>
+                    <tr>
+                        <td>Fourth</td>
+                        <td>300 seconds</td>
+                        <td>171 Joules</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Average</strong></td>
+                        <td><strong>300 seconds</strong></td>
+                        <td><strong>176.25 Joules</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 class="animate-left">Analysis</h2>
+            <p class="animate-right">The solution "Converting thermal and mechanical energy into electricity using Stirling engine" tries to solve two main grand challenges, which are improving the usage of alternative energy and improving the scientific and technological environment. They are the main challenges that face Egypt and the whole world in general.</p>
+            <p class="animate-right">The solution tries to solve the problem which is the huge usage of non-renewable energy as we use non-renewable sources of energy in about 90% of total energy consumption as the production of oil has increased since 1980 and reached its peak in 1996 as shown in graph (2).</p>
+            <p class="animate-right">The idea depends on transferring heat energy into mechanical energy depending on Hermann von Helmholtz's law of conservation of energy.</p>
+            <p class="animate-right">This is according to Physics (PH 1.10) which talks about thermal energy and temperature and factors affecting temperature and how to control it. Also, Physics (PH 1.11) talks about thermodynamics and Thermodynamic processes (isothermal–isovolumetric–isobaric–adiabatic) and the law of conversation of heat and how we can use it to predict change in heat and how it will affect our prototype. A cylinder part that contains the fluid that gets heated and cooled to be expanded and compressed then we had the piston that moves inside the cylinder, and the flywheel and the crank craft which are connected to the piston, the dynamo that is connected to the flywheel.</p>
+            <p class="animate-right">This is according to Chemistry (CH 1.15) which talks about heat and how it transfers and factors that can affect heat. In most of the ideas the prototype is made of a small scale and in real life, they apply a large-scale prototype but, in this prototype, the small scale is used as our project had an inverse relation with the efficiency.</p>
+            <p class="animate-right">To achieve one of the most important design requirements which is all of the materials are recycled or natural. The materials that are used are DVDs, drink cans, food cans, and other materials that have a high heat resistance. The most important thing that helped us choose these materials was studying Chemistry (CH 1.09) which illustrates more about the physical properties of matter and focuses on some of those properties like malleability, electric conductivity and more so this helped choosing the materials.</p>
+            <p class="animate-right">After choosing the solution the idea must be constructed and tested. The test plan depended on making sure that the design requirements were achieved. One of the most important steps in the test plan was to calculate the output voltage.</p>
+            <p class="animate-right">After obtaining the results, an analysis was required to measure how much the goal was reached and how close were the design requirements achieved. The test plan results of the first test plan have achieved the design requirements as it produced 162 Joules in 5 minutes as shown in the results. This has been calculated by the rule: watt = Joules/time</p>
+            <p class="animate-right">In addition, the output has been measured by a multimeter to estimate watts by the rule: watt = voltage * ampere</p>
+            <p class="animate-right">Also, the lap speed was measured with a digital tachometer and the first result was 819 RPM. With that, the design requirements have been achieved. The second test plan results are 180 Joules and 671 RPM. The third test plan results are 192 Joules which is the best of all the results with a lap speed of 787 RPM. Lastly, with the fourth test plan, the results are 171 Joules and a lap speed of 780 RPM. The second, third, and fourth trials are made to calculate the average of the output and make sure that the idea works. After all of that, the average output has been calculated for the Joules which is 176.25 Joules.</p>
+            <p class="animate-right">With these results, the design requirement which is the prototype must produce at least 150 Joules (0.5 watts) in at most 5 minutes is achieved. To produce all of that the behavior and the prototype work. The process starts with heating the fluid inside the internal tank. After that, the fluid expanded and raised the internal piston. The external tank cools down the fluid with the water. Then the fluid is compressed and generates linear mechanical energy by moving the crank-craft. The crank-craft transfers the linear mechanical energy to the flywheel which is responsible for changing the linear to rotational mechanical energy. The dynamo which is connected to the flywheel receives the energy transferring its electricity. Other requirements have been achieved such as that all of the materials are recycled or natural materials.</p>
+            <p class="animate-right">Furthermore, the cost is very low as we use cheap and recycled materials. During the test plan, it was found that no part of the prototype was harmed which achieved the solution requirements (Durability, Sustainability, Quality, Safety, and Cost).</p>
+
+            <h2 class="animate-left">Conclusion</h2>
+            <p class="animate-right">At the end of this journey and after several tests and modifications, based on the results and analysis findings:</p>
+            <ul class="animate-right">
+                <li>The idea is a beta Stirling engine which depends on two pistons in the mechanism of working.</li>
+                <li>The idea managed to produce 3.11 Potential difference (volts) and 0.189 electric currents (amps).</li>
+                <li>Produced 0.5875 power (watt) which equals (176.25) energy (joules) in 5 minutes.</li>
+                <li>The flywheel transforms the linear mechanical energy to rotational mechanical energy which equals 786.75 RPM (Lap speed).</li>
+                <li>By comparing the prototype with the steam engine it found that the efficiency of the Stirling engine is higher due to the lower need for thermal energy.</li>
+                <li>Enhancing the used materials on a large scale would increase the efficiency and the produced energy.</li>
+                <li>The problem would be solved in a high ratio due to that project as Egypt suffers from a lack of renewable energy generators.</li>
+            </ul>
+
+            <h2 class="animate-left">Recommendations</h2>
+            <p class="animate-right">"Nothing is perfect", this is the main idea in every project. Some things could be applied, and others can develop or upgrade the prototype or even the real application. These recommendations are referred into some points, and they are:</p>
+            <ol class="animate-right">
+                <li>Develop the real application by making it with materials that have high heat resistance and sustainability, as well as good thermal conductivity.</li>
+                <li>Minimize resistance within the engine to enhance its efficiency, ensuring proper lubrication and facilitating fluid movement of its components. Yet, maintain a careful balance with the necessity of generating ample power to propel the engine with vigor.</li>
+                <li>Develop the prototype and the real application by adding a high healing point fluid in the heating tank.</li>
+                <li>Apply the cooling tank with a material that can help the fluid get cooler faster.</li>
+                <li>Applying safety precautions to avoid any accidents because of the high heat.</li>
+                <li>Focus on improving the thermal efficiency of the engine—experiment with different insulation materials, and regenerative cooling techniques to minimize heat loss and maximize energy conversion.</li>
+            </ol>
         </div>
     </section>
 
-    <!-- Project Content -->
-    <section class="project-content">
+    <!-- Document Viewer Section -->
+    <section class="document-viewer-section">
         <div class="container">
-            <div class="project-details">
-                <div class="project-info">
-                    <h2>Project Overview</h2>
-                    <p>LSTM-based model to predict stock prices using historical data. Includes data preprocessing, feature engineering, and model evaluation. The project demonstrates advanced time series analysis and deep learning applications in financial forecasting.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Python</span>
-                        <span class="project-tag">Machine Learning & Computer Vision</span>
+            <h2 class="animate-on-scroll">Project Documents</h2>
+            <div class="viewer-container">
+                <div class="viewer-item animate-left">
+                    <div class="viewer-title">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Project Portfolio</h3>
+                    </div>
+                    <div class="viewer-content">
+                        <!-- Portfolio PDF Viewer -->
+                        <iframe id="portfolio-pdf-viewer" src="projects/G10-S2/Portfolio 17107.pdf"></iframe>
                     </div>
                 </div>
-                <div class="project-info">
-                    <h2>Key Features</h2>
-                    <ul>
-                        <li>Data collection and preprocessing</li>
-                        <li>Feature engineering for financial data</li>
-                        <li>LSTM model architecture</li>
-                        <li>Model training and evaluation</li>
-                        <li>Prediction visualization</li>
-                    </ul>
+                
+                <div class="viewer-item animate-right">
+                    <div class="viewer-title">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Project Poster</h3>
+                    </div>
+                    <div class="viewer-content">
+                        <!-- Poster Viewer -->
+                        <iframe id="poster-pdf-viewer" src="projects/G10-S2/Poster_17107.pdf"></iframe>
+                    </div>
                 </div>
             </div>
-
-            <div class="project-image">
-                <div style="font-size: 5rem;">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-            </div>
-
-            <a href="index.html#projects" class="back-btn">Back to Projects</a>
         </div>
     </section>
+
+    <!-- Image Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="gallery-title animate-on-scroll">Project Gallery</h2>
+            <div class="gallery-grid">
+                <!-- Gallery items will be added here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-nav">
+                <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2023 AI Portfolio. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>AI Portfolio</h3>
+                    <p>A showcase of technical projects in artificial intelligence and machine learning for university applications.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.kaggle.com/" class="social-link"><i class="fab fa-kaggle"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px;"><a href="index.html#home" style="color: #cbd5e1; text-decoration: none;">Home</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html#about" style="color: #cbd5e1; text-decoration: none;">About</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html#projects" style="color: #cbd5e1; text-decoration: none;">Projects</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html#contact" style="color: #cbd5e1; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Technical Skills</h3>
+                    <p>C++, Python, My-SQL, Flutter, Git/GitHub, HTML, CSS, JavaScript, Node.js, IoT & Embedded Systems, Electronics & circuits, Machine Learning & Computer Vision, Networking, Mobile & Backend Development</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI Portfolio. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Gallery data - **UPDATED WITH YOUR PROJECT IMAGES**
+        const galleryImages = [
+            { src: 'projects/G10-S2/images/gallery-Evaluation_image.jpg', caption: 'Evaluation of the Stirling Engine' },
+            { src: 'projects/G10-S2/images/gallery-final_result.jpg', caption: 'Final Result of the Project' },
+            { src: 'projects/G10-S2/images/gallery-final_result.png', caption: 'Final Result Diagram' },
+            { src: 'projects/G10-S2/images/gallery-Teacher_Support.jpg', caption: 'Teacher Support During Project' },
+            { src: 'projects/G10-S2/images/gallery-testing.mp4', caption: 'Testing the Stirling Engine', type: 'video' },
+            { src: 'projects/G10-S2/images/portfolio_cover_page.jpg', caption: 'Portfolio Cover Page' },
+            { src: 'projects/G10-S2/images/Poster_17107img.jpg', caption: 'Project Poster Image' }
+        ];
+
+        // Initialize gallery
+        function initGallery() {
+            const galleryGrid = document.querySelector('.gallery-grid');
+            
+            galleryImages.forEach((image, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item animate-on-scroll';
+                galleryItem.setAttribute('data-index', index);
+                
+                if (image.type === 'video') {
+                    galleryItem.innerHTML = `
+                        <div class="media-container">
+                            <video muted>
+                                <source src="${image.src}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="caption">${image.caption}</div>
+                    `;
+                } else {
+                    galleryItem.innerHTML = `
+                        <div class="media-container">
+                            <img src="${image.src}" alt="${image.caption}">
+                        </div>
+                        <div class="caption">${image.caption}</div>
+                    `;
+                }
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+            
+            // Add click event to gallery items
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    openLightbox(parseInt(this.getAttribute('data-index')));
+                });
+            });
+        }
+
+        // Lightbox functionality
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxContent = document.querySelector('.lightbox-content');
+            const media = galleryImages[currentIndex];
+            
+            if (media.type === 'video') {
+                lightboxContent.innerHTML = `
+                    <span class="lightbox-close">&times;</span>
+                    <video controls autoplay>
+                        <source src="${media.src}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="lightbox-nav">
+                        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                `;
+            } else {
+                lightboxContent.innerHTML = `
+                    <span class="lightbox-close">&times;</span>
+                    <img src="${media.src}" alt="${media.caption}">
+                    <div class="lightbox-nav">
+                        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                `;
+            }
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Add event listeners for lightbox controls
+            document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            document.querySelector('.lightbox-prev').addEventListener('click', showPrev);
+            document.querySelector('.lightbox-next').addEventListener('click', showNext);
+        }
+
+        function closeLightbox() {
+            document.querySelector('.lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            openLightbox(currentIndex);
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            openLightbox(currentIndex);
+        }
+
+        // Close lightbox when clicking outside the content
+        document.querySelector('.lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.querySelector('.lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    showPrev();
+                } else if (e.key === 'ArrowRight') {
+                    showNext();
+                }
+            }
+        });
+
+        // Scroll animations
+        function checkScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        function initMobileMenu() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav ul');
+            
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initGallery();
+            initMobileMenu();
+            checkScroll(); // Check on load
+            
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
 </body>
 </html>

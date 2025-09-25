@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 3: Sentiment Analysis Tool</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css.all.min.css">
+    <title>Algae-Based Air Filtration: Enhancing Indoor Air Quality</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Base Styles - Copied from index.html for consistency */
         * {
             margin: 0;
             padding: 0;
@@ -40,6 +41,74 @@
             padding: 0 20px;
         }
 
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Header Styles */
         header {
             background: var(--secondary);
             color: white;
@@ -88,101 +157,416 @@
             color: var(--accent);
         }
 
-        .project-hero {
-            background: linear-gradient(135deg, var(--secondary) 0%, #334155 100%);
-            color: white;
-            padding: 160px 0 80px;
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Project Specific Styles */
+        .project-detail-section {
+            padding-top: 100px; /* Adjust for fixed header */
+            text-align: left;
+        }
+
+        .project-detail-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
             text-align: center;
         }
 
-        .project-hero h1 {
-            color: white;
+        .project-detail-section h2 {
+            text-align: left;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .project-detail-section h2:after {
+            left: 0;
+            transform: none;
+        }
+
+        .project-detail-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-detail-section ul {
+            list-style: disc;
+            margin-left: 20px;
             margin-bottom: 1.5rem;
+            color: var(--gray);
         }
 
-        .project-hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            color: #cbd5e1;
+        .project-detail-section ol {
+            list-style: decimal;
+            margin-left: 20px;
+            margin-bottom: 1.5rem;
+            color: var(--gray);
         }
 
-        .project-content {
-            padding: 80px 0;
+        .project-detail-section li {
+            margin-bottom: 0.5rem;
         }
 
-        .project-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 50px;
-        }
-
-        .project-info h2 {
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+        .project-detail-section table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 20px 0;
         }
 
-        .project-tag {
-            background: #dbeafe;
-            color: var(--primary);
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
+        .project-detail-section th, .project-detail-section td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
         }
 
-        .project-image {
+        .project-detail-section th {
+            background-color: #f2f2f2;
+        }
+
+        /* Image Gallery Styles */
+        .gallery-section {
+            padding: 60px 0;
+            background-color: #f0f4f8;
+        }
+
+        .gallery-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
-        .project-image div {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(45deg, #f59e0b, #ef4444);
-            border-radius: 10px;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 250px; /* Fixed height for consistency */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item .media-container {
+            flex: 1;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .caption {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img, .lightbox-content video {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .lightbox-nav button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Document Viewer Styles */
+        .document-viewer-section {
+            padding: 60px 0;
+        }
+
+        .viewer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .viewer-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .viewer-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .viewer-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .viewer-title i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .viewer-content {
+            height: 600px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .viewer-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-left.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .animate-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-right.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Footer - Copied from index.html for consistency */
         footer {
             background: var(--secondary);
             color: white;
-            padding: 20px 0;
-            text-align: center;
+            padding: 50px 0 20px;
         }
 
-        .back-btn {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 12px 30px;
-            background: var(--primary);
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-col p {
+            color: #cbd5e1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .back-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
         }
 
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
         @media (max-width: 768px) {
-            .project-details {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 200px;
+            }
+            
+            .viewer-content {
+                height: 400px;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--secondary);
+                padding: 20px;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
             }
         }
     </style>
@@ -191,10 +575,13 @@
     <!-- Header -->
     <header>
         <div class="container header-content">
-            <a href="index.html" class="logo">AI<span>Portfolio</span></a>
+            <a href="index.html" class="logo">4PRO<span>Portfolio</span></a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#home">Home</a></li>
                     <li><a href="index.html#about">About</a></li>
                     <li><a href="index.html#projects">Projects</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
@@ -203,53 +590,485 @@
         </div>
     </header>
 
-    <!-- Project Hero -->
-    <section class="project-hero">
+    <section class="project-detail-section">
         <div class="container">
-            <h1>Sentiment Analysis Tool</h1>
-            <p>NLP application using BERT transformer model for text sentiment classification with web interface.</p>
+            <h1 class="animate-on-scroll">Algae-Based Air Filtration: Enhancing Indoor Air Quality</h1>
+            <img src="projects/G11-S1/images/panner.jpg" alt="Algae-Based Air Filtration Project Banner" class="animate-on-scroll">
+
+            <h2 class="animate-left">Abstract</h2>
+            <p class="animate-right">Recently, the insufficient supply of renewable energy and the overdependence on fossil fuels, have become major problems impacting the Egyptian economy and its citizens. According to a recent study done by the IEA in 2022, Fossil fuels contributed to about 90% of the total energy poll in Egypt while renewable energy only contributed to about 10%. Burning this non-clean energy has made air quality deteriorate substantially in the past few decades.</p>
+            <p class="animate-right">This project addresses these challenges by making an eco-friendly and recycled bio-air filter that will be built to absorb CO2 by utilizing the photosynthetic cycles of the chlorella. While testing the prototype, the ability of the biofilter to absorb CO2 and the temperature and PH-controlling capabilities of the prototype were considered design requirements.</p>
+            <p class="animate-right">The ability of absorption of CO2 was measured in terms of the difference in CO2 concentration divided by the time. To satisfy this design requirement, the prototype was tested by introducing an air sample of 1500 ml and then measuring the CO2 concentration before and after 10 minutes by using a sensor.</p>
+            <p class="animate-right">To achieve the design requirement of making the prototype capable of controlling the temperature and pH while also providing the algae with enough nutrients. A thermometer and a pH meter were used to measure the temperature and the PH respectively. The temperature was controlled by using a submersible aquarium heater, the pH was controlled by adding NaOH as it is basic and the nutrients were provided using organic waste.</p>
+            <p class="animate-right">The prototype decreased the concentration of CO2 by about 46% and had the temperature and the pH at an average range of (20-30) and 8 respectively. The major conclusions are that the prototype met all the design requirements and that it is eco-friendly and waste-derived making it a very potent solution to the problem of deteriorating air quality (air pollution).</p>
+
+            <h2 class="animate-left">Introduction</h2>
+            <p class="animate-right">The success of the project starts with understanding the grand challenges and problems targeted which are the insufficient use of clean energy, and the ever-growing population which are catalysts for the deterioration of air quality and the spread of multiple air pollutants like CO2. As shown in Graph (1) the CO2 emissions have been increasing until they reached 17.6 trillion tons. This excessive amount of CO2 emissions cause a multitude of problems to the environment and human health such as climate change, ocean acidification, disruption of ecosystems and respiratory and cardiovascular diseases.</p>
+            <p class="animate-right">This project aims to decrease the concentration of CO2 in the atmosphere. Solving this challenge will minimize the negative consequences of climate change and pollution, while also contributing positively towards the challenge of recycling, which in turn works to eradicate public health issues and diseases.</p>
+            <p class="animate-right">Some prior solutions were found including the LIQUID 3 micro algae air biofilter. The pros of this solution are that microalgae have a significantly higher photosynthesis and CO₂ absorption efficiency compared to traditional trees. They are estimated to be 10 to 50 times more productive while also taking way less space. Still as a con, LIQUID 3 units require specific temperature conditions for optimal functioning; they need heating when temperatures drop.</p>
+            <p class="animate-right">Another prior solution was the photocatalytic oxidation. This prior solution is advantageous as PCO can effectively degrade a wide range of pollutants, including volatile organic compounds (VOCs), nitrogen oxides (NOx), and certain pathogens, reducing harmful substances to less toxic byproducts like water and carbon dioxide. However, the initial cost of installing the PCO can be quite expensive while also not completely degrading the harmful pollutants.</p>
+            <p class="animate-right">The chosen solution meets all the design and solution requirements to solve the specific problem. The solution requirements include eco-friendliness, efficiency and sustainability. All 3 solution requirements were achieved as the solution is of high efficiency equivalent to 46% while also decreasing the concentration of CO2.</p>
+            <p class="animate-right">The 3 main design requirements are: 1) decreasing the concentration of CO2 by 20% in a timeframe of 10 minutes. The prototype reached a rate of reduction equivalent to 46%. 2) The temperature control capabilities: Due to the automated heating system, the prototype stayed within the range of 20 to 30 Celsius. 3) The optimization of pH and nutrients: The pH of the prototype stayed within the range of 7 to 9 pH which was achieved by adding NaOH and the nutrients were provided to the algae from the biological waste.</p>
+            <p class="animate-right">The chosen solution which is the algae air biofilter attempts to solve the problem of substantial deterioration of air quality over time especially with the increasing rate of harmful gases emissions every year with each year being worse than the one before it. The CO2 absorption method of the prototype is reliant on photosynthesis so to maximize the efficiency of the photosynthesis process, the algae were put in an ideal environment to maximize its reproduction and rate of its photosynthetic cycles. This selection was chosen as it is way efficient and advantageous than a grown tree in terms of efficiency of CO2 absorption, space and time utilization.</p>
+
+            <h2 class="animate-left">Materials and Methods</h2>
+            <table class="animate-right">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Usage</th>
+                        <th>Cost</th>
+                        <th>Source of Purchase</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Algae sample</td>
+                        <td>75ml</td>
+                        <td>A water sample containing a number of algae organisms</td>
+                        <td>Used as the first sample in the reproduction of the algal system</td>
+                        <td>——</td>
+                        <td>Faculty of Science, Zagarig University</td>
+                    </tr>
+                    <tr>
+                        <td>Glass container</td>
+                        <td>1</td>
+                        <td>A container made of glass</td>
+                        <td>Contains an environment made for the algae</td>
+                        <td>530 LE</td>
+                        <td>Glass store</td>
+                    </tr>
+                    <tr>
+                        <td>Pipe & valve</td>
+                        <td>50cm pipe 1 valve</td>
+                        <td>A plastic pipe with a diameter of 32 mm, connected to a plastic pipe</td>
+                        <td>Used as paths for the air sample</td>
+                        <td>65 LE</td>
+                        <td>Plumping store</td>
+                    </tr>
+                    <tr>
+                        <td>Purple LED strip</td>
+                        <td>2 m</td>
+                        <td>A lightning strip with a purple color of a wavelength between 500 and 600</td>
+                        <td>Used to increase the light intensity of the system increasing the efficiency</td>
+                        <td>40 LE</td>
+                        <td>Electronics shop</td>
+                    </tr>
+                    <tr>
+                        <td>Water heater</td>
+                        <td>1</td>
+                        <td>A device uses 220V AC electricity to heat water</td>
+                        <td>Used to control the water temperature to be between 25° and 35°</td>
+                        <td>100 LE</td>
+                        <td>Electric shop</td>
+                    </tr>
+                    <tr>
+                        <td>Arduino uno R3</td>
+                        <td>1</td>
+                        <td>A microcontroller that controls the project</td>
+                        <td>Used to control the main functions of the project like turning the heater on/off and sensing the gasses</td>
+                        <td>300 LE</td>
+                        <td>Electronics shop</td>
+                    </tr>
+                    <tr>
+                        <td>CO₂ sensor (mg-135)</td>
+                        <td>1</td>
+                        <td>——</td>
+                        <td>Connected to Arduino board to sense the concentration of CO₂ gas in the air</td>
+                        <td>55 LE</td>
+                        <td>Electronics shop</td>
+                    </tr>
+                    <tr>
+                        <td>Temperature sensor (D518820)</td>
+                        <td>1</td>
+                        <td>——</td>
+                        <td>Connected to the Arduino board to sense the temperature of the water</td>
+                        <td>50 LE</td>
+                        <td>Electronics shop</td>
+                    </tr>
+                    <tr>
+                        <td>Electronic connections</td>
+                        <td>1 breadboard</td>
+                        <td>Simple electronic parts and basics for connecting circuits</td>
+                        <td>Used to connect several electric parts together in circuits</td>
+                        <td>62 LE</td>
+                        <td>Electronics shop</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><strong>Total Cost</strong></td>
+                        <td colspan="2"><strong>1202 LE</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="animate-left">Methods</h3>
+            <p class="animate-right">The prototype was made through many steps of construction, these steps are listed above:</p>
+            <ol class="animate-right">
+                <li>The glass container was made by cutting the sides by lengths, 2 holes were made in top of the container having 2 pieces of pipe installed in them, one pipe connected to a valve.</li>
+                <li>The electric parts were installed in the container. The bread board was installed in top of the container having all the connections in it. The water heater, temperature sensor, and CO2 sensor were installed inside the container, and connected to the Arduino board.</li>
+                <li>The Arduino board was connected to a laptop to upload the code written to utilize the function of each electronic part.</li>
+                <li>The container was filled with water, the algae sample was inserted into the water and supplied with the needed nutrients.</li>
+            </ol>
+
+            <h3 class="animate-left">Test Plan</h3>
+            <p class="animate-right">After constructing the prototype, it was time to perform the test plan on it, ensuring that it achieved the design requirements. These tests were in many steps:</p>
+            <ol class="animate-right">
+                <li>Testing the pH scale of the prototype, this step includes the use of litmus paper, which takes a specific color for each pH level, the pH level needed is between 7 and 9.</li>
+                <li>Testing the temperature of the system, this test involves the use of the water temperature sensor DS18B20 In measuring the temperature of the system, the temperature needed is between 20 and 30 Celsius.</li>
+                <li>Testing the capability of the system to absorb CO₂ Pollutant. This test involves two main steps:
+                    <ol>
+                        <li>Preparing the testing air sample, this was done by preparing an amount of CO₂ gas using the reaction of Yeast and Sugar, which produces CO₂ gas and alcohol. The air sample are prepared by collecting the CO₂ in a closed air container with a volume of 1500ml.</li>
+                        <li>Testing the absorption rate, this was done by injecting the prepared polluted air sample in the algae environment and watching the reduction of the pollutant using the MQ-135 sensor.</li>
+                    </ol>
+                </li>
+            </ol>
+            <p class="animate-right">The target of this test is to absorb not less than 20% of the pollutant in the air sample, in a time period not more than 10 minutes.</p>
+
+            <h2 class="animate-left">Results</h2>
+            <p class="animate-right">The prototype was tested on two main things: its carbon removal efficiency and its temperature control capabilities. As shown in the results, the prototype surpassed both design requirements.</p>
+            
+            <h3 class="animate-left">CO₂ Capture Efficiency</h3>
+            <table class="animate-right">
+                <thead>
+                    <tr>
+                        <th>Time (minutes)</th>
+                        <th>Trial 1 (CO₂ Ppm)</th>
+                        <th>Trial 2 (CO₂ Ppm)</th>
+                        <th>Trial 3 (CO₂ Ppm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>472 ± 9.44</td>
+                        <td>451 ± 9.02</td>
+                        <td>413 ± 8.26</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>427 ± 8.54</td>
+                        <td>414 ± 8.28</td>
+                        <td>373 ± 7.46</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>389 ± 7.78</td>
+                        <td>380 ± 7.6</td>
+                        <td>338 ± 6.76</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>354 ± 7.08</td>
+                        <td>346 ± 6.92</td>
+                        <td>305 ± 6.1</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>321 ± 6.42</td>
+                        <td>315 ± 6.3</td>
+                        <td>272 ± 5.44</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>292 ± 5.84</td>
+                        <td>285 ± 5.7</td>
+                        <td>240 ± 4.8</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Efficiency</strong></td>
+                        <td><strong>38.13%</strong></td>
+                        <td><strong>38.80%</strong></td>
+                        <td><strong>41.88%</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="animate-right"><strong>Average Efficiency: 38.83%</strong></p>
+            <p class="animate-right">The CO2 absorption efficiency was calculated by the mathematical law: |Δc/c₀| × 100, where c₀ is the initial concentration of CO2 gas and Δc is the difference between the final concentration and the initial concentration of CO2.</p>
+            <p class="animate-right">The average efficiency is calculated by: (E₁ + E₂ + E₃)/3 = (38.13% + 38.80% + 41.88%)/3 = 38.83%. This surpasses the 20% goal set in the design requirement.</p>
+            <p class="animate-right">Through the 3 trials, the temperature of the prototype was monitored using the temperature sensor DS18B20. The graph had an average range of temperature between (24.4 - 27.1). Staying within the range of (20 Celsius-30 Celsius) This is strictly because of the automatic heating system keeping the prototype at optimum temperatures.</p>
+
+            <h2 class="animate-left">Analysis</h2>
+            <p class="animate-right">Considering the test findings, the prototype achieved the design requirements, exhibiting a positive impact on the grand challenges addressed, and the major problem of air pollution.</p>
+            <p class="animate-right">It's no secret that Egypt is facing an environmental crisis namely the deterioration of air quality, and this is due to the large amount of contaminated gasses emissions from the burning of non-clean energy (fossil fuels). As a way to combat this deterioration of air quality, Egypt is looking to decrease the concentration of those harmful gasses and these efforts are presented in the various air filters that are in Egypt like the Daikin air filtration units and the arabo filters, though these projects aren't keeping up with the recent emissions. If Egypt succeeds in making the rate of emissions equivalent to or less than the rate of air filtration, it will result in improving the environmental situation, and the overall health conditions of the Egyptian citizens.</p>
+            <p class="animate-right">The algae biofilter (the chosen solution) aids Egypt in its journey to reach the state of equilibrium between the emissions of toxic gases and the rate of air filtration. This solution overcomes the grand challenges and solves the major problem of air pollution. This is because the biological filter filters CO2 with an efficiency of 10 to 30 times more effective than a tree while also taking substantially less space and time to do said function.</p>
+            <p class="animate-right">The reason why the biological filter was chosen as the solution is because it utilizes the algal photosynthesis process, so the algae are placed in a suitable and ideal environment maximizing both its reproduction and the rate of its photosynthetic cycles thus maximizing the efficiency of its CO2 removal. Water will be used as the medium for the algae as water needs to gain a considerable amount of energy to increase its temperature due to its high heat capacity thus making its temperature quite stable as learned in (ES.2.01).</p>
+            <p class="animate-right">The project's strength points as illustrated from the results are that it is highly efficient in terms of decreasing the CO2 concentration, space utilization, and time management especially when compared to an actual tree. It also provides the ideal living environment for the algae thus resulting in them reaching high efficiencies of CO2 absorption equivalent to 46%. The project's weak points are that it requires a fair amount of maintenance to function and consumes energy for the heating system and the CO2 detection system while also not being able to deal well with hot temperatures.</p>
+            <p class="animate-right">The prototype met all the design requirements:</p>
+            <ol class="animate-right">
+                <li><strong>Decrease the concentration of CO2 by 20% in a timeframe of 10 minutes:</strong> As shown in the results, the prototype surpassed this design requirement as it decreased the CO2 concentration by 46%. This was calculated by using the law: |Δc/c₀| × 100. This was done by making a database using an Excel sheet of the values for 3 trials then getting the average for said trials. This type of database is called a relational database. (CS.2.02) was essential for making the database and identifying its type.</li>
+                <li><strong>Temperature control capabilities:</strong> The prototype showed remarkable control over its internal temperature keeping the range between 20 and 30 Celsius. This was achieved primarily due to the automatic temperature control system, where the temperature sensor gives a reading to the Arduino and if said reading drops below 20 Celsius, a submersible aquarium heater (which is connected to the Arduino using a relay) is coded to have it turn on and heat the water till it reaches a stable temperature of 25 Celsius.</li>
+                <li><strong>pH and nutrient optimization:</strong> The pH of the prototype is meant to be in the range of 7 to 9 thus the pH of the prototype was periodically monitored and when the prototype dropped below a pH of 7, NaOH was added and this is because it had a pH of 13 which was calculated from the law that was learned in (CH.2.03) pH of NAOH = - log (H+). The nutrients of the algae were provided from organic waste. We used molarity to measure how much nutrients was dissolved in the water to help algae grow. Molality: Tracks nutrients more accurately when temperature changes and its calculated by using the following law: number of moles of nutrients / liters of solution, to ensure algae grow consistently as learned in (CH.2.01).</li>
+            </ol>
+            <p class="animate-right">There are 3 mechanisms that are essential for testing the prototype:</p>
+            <ol class="animate-right">
+                <li><strong>Air sample preparation:</strong> Yeast will be added to sugar with varying ratios, then after waiting for an approximate time of an hour, CO2 will be produced and the air sample will be complete. This is illustrated in the reaction: C₆H₁₂O₆ (aq) → 2 C₂H₅OH (aq) + 2 CO₂ (g). This way of CO2 preparation was chosen as Ethanol (C₂H₅OH) is considered a nutrients for the algae.</li>
+                <li><strong>The method of CO2 absorption:</strong> the algae filters the CO2 out of the air through its photosynthetic cycles illustrated in the following chemical equation: 6 CO₂ + 6 H₂O + light energy → C₆H₁₂O₆ + 6 O₂.</li>
+                <li><strong>The automated heat system:</strong> The 220 V heater is connected to the Arduino UNO through a relay. A temperature sensor was also connected to the Arduino circuit. The circuit is coded so that if the temperature sensor gives a reading less than 20 Celsius, the heater automatically turns on, heating the prototype till it reaches a temperature of 25 Celsius ensuring that the prototype is always at optimal temperatures. The system relies on dynamic electricity to power devices such as CO₂ sensors, heater or LED lighting, which optimize the growth environment for algae and enhance CO₂ absorption efficiency which we learned to utilize in (PH.2.03).</li>
+            </ol>
+            <p class="animate-right">The findings that have arisen from the performance results of the prototype indicate relative success of the project since it exceeded expectations in efficiency, durability, and user feedback. Also, the condition requiring the design to lower 20% of CO₂ pollutants within 10 minutes has been met, proving the system's immediacy in addressing challenges of the environment. This is substantiated by the analysis that shows the endurance of the system's operation with varying conditions, so making it reliable and easy to handle for the user. The project is thus incomparable and the most cost-effective and scalable option from other solutions made by the team on researched alternatives. Most of these solutions are either less efficient or more expensive. This addresses some significant gaps in current methods, meaning that it has the potential for application on a much broader setting. Based on all the results, the validation of the efficacy of the project in meeting its design goals specifically in reducing CO₂ emissions rapidly, makes it a hopeful solution in the fight against environmental pollution in various industries.</p>
+
+            <h2 class="animate-left">Recommendations</h2>
+            <p class="animate-right">"Nothing is perfect", this is the main idea in every project. Some things could be applied, and others can develop or upgrade the prototype or even the real application:</p>
+            <ol class="animate-right">
+                <li>Reflective surfaces can be added around the algae tanks, using mirrors or shiny materials to reflect more light into the system. This helps more light reach the algae without the need for extra electricity.</li>
+                <li>Rainwater can be collected to fill the algae tanks, as it is clean, free, and does not contain chemicals like tap water, which could harm the algae.</li>
+                <li>Carbon dioxide can be added directly into the system, and bubble columns can be used to spread it evenly, helping the algae grow faster. CO₂ can even be recycled from factories, saving money and benefiting the environment.</li>
+                <li>A cooler can be added that it turns on when the temperature of the environment gets more than 30degree Celsius, to ensure that the environment stays at optimal temperature regardless of the conditions.</li>
+                <li>Closed systems like photobioreactors can be used to avoid contamination, and equipment should be cleaned regularly. A small system can be started to test things before scaling up, helping spot and fix any issues early.</li>
+            </ol>
         </div>
     </section>
 
-    <!-- Project Content -->
-    <section class="project-content">
+    <!-- Document Viewer Section -->
+    <section class="document-viewer-section">
         <div class="container">
-            <div class="project-details">
-                <div class="project-info">
-                    <h2>Project Overview</h2>
-                    <p>NLP application that classifies text sentiment using BERT transformer model. Includes a web interface for user interaction. The project showcases advanced natural language processing techniques and modern transformer architectures.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Python</span>
-                        <span class="project-tag">Machine Learning & Computer Vision</span>
+            <h2 class="animate-on-scroll">Project Documents</h2>
+            <div class="viewer-container">
+                <div class="viewer-item animate-left">
+                    <div class="viewer-title">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Project Portfolio</h3>
+                    </div>
+                    <div class="viewer-content">
+                        <!-- Portfolio PDF Viewer -->
+                        <iframe id="portfolio-pdf-viewer" src="projects/G11-S1/Portfolio 17211.pdf"></iframe>
                     </div>
                 </div>
-                <div class="project-info">
-                    <h2>Key Features</h2>
-                    <ul>
-                        <li>BERT model fine-tuning</li>
-                        <li>Sentiment classification</li>
-                        <li>Flask web application</li>
-                        <li>User-friendly interface</li>
-                        <li>Real-time text analysis</li>
-                    </ul>
+                
+                <div class="viewer-item animate-right">
+                    <div class="viewer-title">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Project Poster</h3>
+                    </div>
+                    <div class="viewer-content">
+                        <!-- Poster Viewer -->
+                        <iframe id="poster-pdf-viewer" src="projects/G11-S1/Poster 17211.pdf"></iframe>
+                    </div>
                 </div>
             </div>
-
-            <div class="project-image">
-                <div style="font-size: 5rem;">
-                    <i class="fas fa-language"></i>
-                </div>
-            </div>
-
-            <a href="index.html#projects" class="back-btn">Back to Projects</a>
         </div>
     </section>
+
+    <!-- Image Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="gallery-title animate-on-scroll">Project Gallery</h2>
+            <div class="gallery-grid">
+                <!-- Gallery items will be added here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-nav">
+                <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2023 AI Portfolio. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>AI Portfolio</h3>
+                    <p>A showcase of technical projects in artificial intelligence and machine learning for university applications.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.kaggle.com/" class="social-link"><i class="fab fa-kaggle"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px;"><a href="index.html#home" style="color: #cbd5e1; text-decoration: none;">Home</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html#about" style="color: #cbd5e1; text-decoration: none;">About</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html#projects" style="color: #cbd5e1; text-decoration: none;">Projects</a></li>
+                        <li style="margin-bottom: 10px;"><a href="index.html#contact" style="color: #cbd5e1; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Technical Skills</h3>
+                    <p>C++, Python, My-SQL, Flutter, Git/GitHub, HTML, CSS, JavaScript, Node.js, IoT & Embedded Systems, Electronics & circuits, Machine Learning & Computer Vision, Networking, Mobile & Backend Development</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI Portfolio. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Gallery data - **UPDATED WITH YOUR PROJECT IMAGES**
+        const galleryImages = [
+            { src: 'projects/G11-S1/images/Algae-container.jpg', caption: 'Algae Container Setup' },
+            { src: 'projects/G11-S1/images/gallery-a Picture of vulgaris algae.jpg', caption: 'Picture of Vulgaris Algae' },
+            { src: 'projects/G11-S1/images/gallery-adding nutraints solution to algae for production.png', caption: 'Adding Nutrients Solution to Algae for Production' },
+            { src: 'projects/G11-S1/images/gallery-adjusting container for algae.png', caption: 'Adjusting Container for Algae' },
+            { src: 'projects/G11-S1/images/gallery-electronic devices and circuits .jpg', caption: 'Electronic Devices and Circuits' },
+            { src: 'projects/G11-S1/images/gallery-project after installing circuit.png', caption: 'Project After Installing Circuit' },
+            { src: 'projects/G11-S1/images/gallery-project circuit diagram.png', caption: 'Project Circuit Diagram' },
+            { src: 'projects/G11-S1/images/gallery-System code uploaded to Arduino board.png', caption: 'System Code Uploaded to Arduino Board' },
+            { src: 'projects/G11-S1/images/gallery-test video.mp4', caption: 'Algae Air Filtration Test Video', type: 'video' },
+            { src: 'projects/G11-S1/images/portfolio_cover.png', caption: 'Portfolio Cover Page' }
+        ];
+
+        // Initialize gallery
+        function initGallery() {
+            const galleryGrid = document.querySelector('.gallery-grid');
+            
+            galleryImages.forEach((image, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item animate-on-scroll';
+                galleryItem.setAttribute('data-index', index);
+                
+                if (image.type === 'video') {
+                    galleryItem.innerHTML = `
+                        <div class="media-container">
+                            <video muted>
+                                <source src="${image.src}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="caption">${image.caption}</div>
+                    `;
+                } else {
+                    galleryItem.innerHTML = `
+                        <div class="media-container">
+                            <img src="${image.src}" alt="${image.caption}">
+                        </div>
+                        <div class="caption">${image.caption}</div>
+                    `;
+                }
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+            
+            // Add click event to gallery items
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    openLightbox(parseInt(this.getAttribute('data-index')));
+                });
+            });
+        }
+
+        // Lightbox functionality
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxContent = document.querySelector('.lightbox-content');
+            const media = galleryImages[currentIndex];
+            
+            if (media.type === 'video') {
+                lightboxContent.innerHTML = `
+                    <span class="lightbox-close">&times;</span>
+                    <video controls autoplay>
+                        <source src="${media.src}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="lightbox-nav">
+                        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                `;
+            } else {
+                lightboxContent.innerHTML = `
+                    <span class="lightbox-close">&times;</span>
+                    <img src="${media.src}" alt="${media.caption}">
+                    <div class="lightbox-nav">
+                        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                `;
+            }
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Add event listeners for lightbox controls
+            document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            document.querySelector('.lightbox-prev').addEventListener('click', showPrev);
+            document.querySelector('.lightbox-next').addEventListener('click', showNext);
+        }
+
+        function closeLightbox() {
+            document.querySelector('.lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            openLightbox(currentIndex);
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            openLightbox(currentIndex);
+        }
+
+        // Close lightbox when clicking outside the content
+        document.querySelector('.lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.querySelector('.lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    showPrev();
+                } else if (e.key === 'ArrowRight') {
+                    showNext();
+                }
+            }
+        });
+
+        // Scroll animations
+        function checkScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        function initMobileMenu() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav ul');
+            
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initGallery();
+            initMobileMenu();
+            checkScroll(); // Check on load
+            
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
 </body>
 </html>
