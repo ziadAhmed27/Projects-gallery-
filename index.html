@@ -582,7 +582,7 @@
     <!-- Header -->
     <header>
         <div class="container header-content">
-            <a href="#" class="logo">4PRO<span>Portfolio</span></a>
+            <a href="#" class="logo">Personal<span>Portfolio</span></a>
             <div class="menu-toggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -644,13 +644,6 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2>My Projects</h2>
-            <div class="project-filters">
-                <button class="filter-btn active">All</button>
-                <button class="filter-btn">Machine Learning</button>
-                <button class="filter-btn">Computer Vision</button>
-                <button class="filter-btn">NLP</button>
-                <button class="filter-btn">Data Science</button>
-            </div>
             <div class="projects-grid">
                 <!-- Project 1 -->
                 <a href="project1.html" class="project-card-link" data-category="civil-engineering">
@@ -783,7 +776,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
-                    <h3>4PRO Portfolio</h3>
+                    <h3>Personal Portfolio</h3>
                     <p>A showcase of technical projects in artificial intelligence and machine learning for university applications.</p>
                     <div class="social-links">
                         <a href="https://github.com/ziadAhmed27" class="social-link"><i class="fab fa-github"></i></a>
@@ -862,26 +855,6 @@
             nav.classList.toggle('active');
         });
 
-        // Project filter
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card-link');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                const filter = button.dataset.filter;
-
-                projectCards.forEach(card => {
-                    if (filter === 'all' || card.dataset.category.includes(filter)) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
     </script>
 
 </body>
